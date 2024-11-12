@@ -14,6 +14,7 @@ public class LobbyManager : NetworkBehaviour
     [SerializeField] private GameObject _panelPrefab;
     [SerializeField] private GameObject _ContentGO;
     [SerializeField] private TMP_Text rdyTxt;
+    
 
     [SerializeField] private NetworkedPlayerData _networkPlayers;
 
@@ -22,6 +23,7 @@ public class LobbyManager : NetworkBehaviour
     private ulong _myLocalClientId;
 
     private bool isReady = false;
+   
 
     private void Start()
     {
@@ -70,7 +72,7 @@ public class LobbyManager : NetworkBehaviour
         if (!IsServer)
         {
             QuitLobbyServerRpc();
-            SceneManager.LoadScene(0);
+            
         }
         else
         {
@@ -161,7 +163,7 @@ public class LobbyManager : NetworkBehaviour
         {
             if(playerData._clientId == kickTarget)
             {
-                // _networkPlayers._allConnectedPlayers.Remove(playerData);
+                _networkPlayers._allConnectedPlayers.Remove(playerData);
 
                 KickedClientRpc(RpcTarget.Single(kickTarget, RpcTargetUse.Temp));
 

@@ -29,6 +29,7 @@ public class UI_NetManager : NetworkBehaviour
         {
             _mySpawnController.SpawnAllPlayers();
             
+            
             HideGuiRpc();
         }
     }
