@@ -9,7 +9,7 @@ public class UI_NetManager : NetworkBehaviour
 {
     [SerializeField] private Button _serverBttn, _clientBttn, _hostBttn, _startBttn;
 
-    [SerializeField] private GameObject _connectionbttnGroup;
+    [SerializeField] private GameObject _connectionbttnGroup, _socialPanel;
 
     [SerializeField] private SpawnController _mySpawnController;
     // Start is called before the first frame update
@@ -28,8 +28,16 @@ public class UI_NetManager : NetworkBehaviour
         if (IsServer)
         {
             _mySpawnController.SpawnAllPlayers();
-            _startBttn.gameObject.SetActive(false);
+            
+            
+            HideGuiRpc();
         }
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void HideGuiRpc()
+    {
+        _socialPanel.SetActive(false);
     }
 
     private void ServerClick()
